@@ -1,0 +1,48 @@
+﻿@using MvcSistem1.Models.Entity;
+@model List<tbOgrenci>
+@{
+    ViewBag.Title = "OgrenciIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("OgrenciIndex", "Ogrenci", FormMethod.Get))
+{
+    <p>
+        <b>Aranacak İsim:</b> @Html.TextBox("p");
+        <input type="submit" value="Ara" />
+    </p>
+
+}
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>ADI</th>
+        <th>SOYADI</th>
+        <th>NO</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+
+
+    </tr>
+    <tbody>
+        @foreach (var ogrnc in Model)
+        {
+            <tr>
+                <th>@ogrnc.id</th>
+                <td>@ogrnc.Ad</td>
+                <td>@ogrnc.Soyad</td>
+                <td>@ogrnc.No</td>
+
+                <td>@Html.ActionLink("SİL", "OgrenciSil", new { id = ogrnc.id }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Ogrenci/OgrenciGetir/@ogrnc.id" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<a href="/Ogrenci/OgrenciEkle" class="btn btn-primary">YENİ ÖĞRENCİ EKLE</a>
+
+
+

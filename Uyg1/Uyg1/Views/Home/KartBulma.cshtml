@@ -1,0 +1,267 @@
+﻿@*
+    Bu sayfayı Homecontroller.cs sayfasında KartBulma metodun KartBulm'nın üzerine tıklayıp 
+    add view'e tıkla use Layout page kısmını işaretleyip ekledik.
+    Eşleştirme Oyunu Html kodlarını alıp yapıştırdık.
+    <!document> kısmını, head ve body taglerini sildik
+    Content içine Images ve Sound klasör oluşturduk ve içerisine resim ve sesleri ekledik
+    seste .waw ile bitenleri .mp3 olarak dönüştürmek gerekiyor
+     resim ve ses yollarını değiştirdik*@
+<meta charset="UTF-8">
+<title>Document</title>
+<style>
+    div {
+        background-color: aquamarine;
+    }
+
+    .Kutu {
+        background-color: aqua;
+    }
+
+    #Header {
+        height: 70px;
+        background-color: aquamarine;
+    }
+
+    #Score {
+        font-size: 24px;
+        color: brown;
+    }
+
+    #GameArea {
+        background-color: bisque;
+    }
+</style>
+
+<div Id="Header">
+
+    <button Id="_baslat" onclick="Baslat()">Başlat</button>
+    <p Id="MesajInfo">Skore Board :</p>
+    <div><b><span id="GeriSayim"></span> kalan süreniz ...</b></div>
+    <div Id="Score"></div>
+
+
+
+    <hr>
+    <br>
+    <div Id="GameArea"></div>
+
+
+</div>
+
+<script>
+    function Baslat() {
+        document.getElementById('GameArea').innerHTML = "";
+        document.getElementById('_baslat').disabled = true;
+        document.getElementById('Score').innerHTML = "0";
+        document.getElementById('GeriSayim').innerHTML = "";
+
+
+        var Puan = 0;
+        var FindingKart = 0;
+        var CardHeight = "210px";
+        var CardWidth = "150px";
+        var CounterTime;
+
+        do {
+            var KartCount = prompt('Lütfen 1 ile 27 arasında bir sayı giriniz', 14);
+        }
+
+        while (!((KartCount > 0) && (KartCount < 28)));
+
+        fnStartCounter();
+
+        function fnStartCounter() {
+            var fiveMinutes = 60 * 5,
+                display = document.querySelector('#GeriSayim');
+            startTimer(fiveMinutes, display);
+        };
+
+
+        var Kartlar = [];
+
+
+
+        for (var i = 1; i <= KartCount; i++) {
+            Kartlar.push(i.toString());
+            Kartlar.push(i.toString());
+        }
+
+
+
+        var z = 1;
+        var FirstKart = null;
+        var SecondKart = null;
+        var FirstKartId = null;
+        var SecondKartId = null;
+        var MyTime;
+        var Double = false;
+        var DoubleValue = 0;
+
+        do {
+            var k = randomIntFromInterval(0, Kartlar.length - 1);
+            var element = document.createElement("div");
+            z++;
+
+            element.setAttribute("id", z);
+            element.style.width = CardWidth;
+            element.style.height = CardHeight;
+            element.style.backgroundImage = 'url(/../../Content/Images/Kart.jpg)';
+            element.style.backgroundSize = '100%';
+            element.style.color = 'white';
+            element.style.fontSize = '1px';
+            element.style.float = 'left';
+            element.style.margin = '5px';
+            element.style.textAlign = 'center';
+            element.style.borderRadius = '10px';
+            element.style.cursor = 'grab';
+            //  element.tagName = Kartlar[k];
+            element.innerHTML = Kartlar[k];
+            element.onclick = function () {
+
+                var _Id = event.target.id;
+                var _val = event.target.innerHTML;
+
+                document.getElementById(_Id).style.backgroundImage = 'url(/../../Content/Images/' + _val + '.jpg)';
+                if (FirstKart == null) {
+                    FirstKartId = _Id;
+                    FirstKart = event.target.innerHTML;
+                } else {
+                    SecondKartId = _Id;
+                    SecondKart = event.target.innerHTML;
+                    _value = 0;
+
+                    if (_Id != FirstKartId) {
+                        if (SecondKart == FirstKart) {
+                            document.getElementById(FirstKartId).onclick = false;
+                            document.getElementById(SecondKartId).onclick = false;
+                            MyTime = setInterval(fnKartPair, 250);
+                            DoubleValue++;
+                            FindingKart++;
+
+                            if (DoubleValue > 1) {
+                                Puan = Puan + (10 * DoubleValue);
+                                PlayDouble();
+
+                            } else {
+                                Puan = Puan + 10;
+                                PlayPair();
+                            };
+
+                            document.getElementById('Score').innerHTML = Puan;
+
+                            if (FindingKart == KartCount) {
+                                PlayYouWin();
+                                MyTime = setInterval(GameOver, 100);
+                            };
+                        } else {
+                            MyTime = setInterval(fnKartClose, 250);
+                            Playlaugh();
+                        }
+                    }
+
+                }
+
+            };
+
+            document.getElementById('GameArea').appendChild(element);
+
+            var index = Kartlar.indexOf(Kartlar[k]);
+            if (index > -1) {
+                Kartlar.splice(index, 1);
+            }
+        }
+        while (Kartlar.length != 0)
+
+
+        function GameOverFinishTime() {
+            document.getElementById('_baslat').disabled = false;
+            FindingKart = 0;
+
+            alert("Üzgünüz zamanınız bitti. Tekrar Denemek İster misiniz?");
+            clearInterval(MyTime);
+            clearInterval(CounterTime);
+
+        };
+
+        function GameOver() {
+            document.getElementById('_baslat').disabled = false;
+            FindingKart = 0;
+
+            clearInterval(MyTime);
+            clearInterval(CounterTime);
+            document.getElementById('MesajInfo').innerHTML = "Tebrikler Oyunu Kazandınız Yeni Baştan Oynamak İster misiniz?";
+
+
+        };
+
+        function startTimer(duration, display) {
+            var timer = duration,
+                minutes, seconds;
+            CounterTime = setInterval(function () {
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+
+                    GameOverFinishTime();
+                }
+            }, 1000);
+        }
+
+        function randomIntFromInterval(min, max) // min and max included
+        {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function fnKartClose() {
+            document.getElementById(FirstKartId).style.backgroundImage = 'url(/../../Content/Images/Kart.jpg)';
+            document.getElementById(SecondKartId).style.backgroundImage = 'url(/../../Content/Images/Kart.jpg)';
+            FirstKart = null;
+            SecondKart = null;
+            FirstKartId = null;
+            SecondKartId = null;
+            clearInterval(MyTime);
+            DoubleValue = 0;
+        }
+
+        function fnKartPair() {
+            if (FirstKartId != null) {
+                document.getElementById(FirstKartId).style.backgroundImage = 'url(/../../Content/Images/Pair.jpg)';
+                document.getElementById(SecondKartId).style.backgroundImage = 'url(/../../Content/Images/Pair.jpg)';
+                FirstKart = null;
+                SecondKart = null;
+                FirstKartId = null;
+                SecondKartId = null;
+                clearInterval(MyTime);
+            }
+        }
+
+        function Playlaugh() {
+            var audio = new Audio('../../Content/Sound/YouWin.mp3');
+            audio.play();
+        }
+
+        function PlayPair() {
+            var audio = new Audio('../../Content/Sound/Pair.mp3');
+            audio.play();
+        }
+
+        function PlayDouble() {
+            var audio = new Audio('../../Content/Sound/YouWin.mp3');
+            audio.play();
+        }
+
+        function PlayYouWin() {
+            var audio = new Audio('../../Content/Sound/YouWin.mp3');
+            audio.play();
+        }
+    }
+
+</script>
+

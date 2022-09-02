@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tblogrenci">
+          <Key>
+            <PropertyRef Name="ogrenciid" />
+          </Key>
+          <Property Name="ogrenciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogrenciad" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ogrencisoyad" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="ogrencisinif" Type="nvarchar" MaxLength="50" />
+          <Property Name="ogrencitel" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="tblogretmen">
+          <Key>
+            <PropertyRef Name="ogretmenid" />
+          </Key>
+          <Property Name="ogretmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ogretmenad" Type="nvarchar" MaxLength="30" />
+          <Property Name="ogretmensoyad" Type="nvarchar" MaxLength="40" />
+          <Property Name="ogretmenders" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblsinif">
+          <Key>
+            <PropertyRef Name="sinifad" />
+          </Key>
+          <Property Name="sinifid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sinifad" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ogretmen_sinif">
+          <End Role="tblsinif" Type="Self.tblsinif" Multiplicity="0..1" />
+          <End Role="tblogretmen" Type="Self.tblogretmen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblsinif">
+              <PropertyRef Name="sinifad" />
+            </Principal>
+            <Dependent Role="tblogretmen">
+              <PropertyRef Name="ogretmenders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblogrenci" EntityType="Self.tblogrenci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblogretmen" EntityType="Self.tblogretmen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblsinif" EntityType="Self.tblsinif" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ogretmen_sinif" Association="Self.FK_ogretmen_sinif">
+            <End Role="tblsinif" EntitySet="tblsinif" />
+            <End Role="tblogretmen" EntitySet="tblogretmen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tblogrenci">
+          <Key>
+            <PropertyRef Name="ogrenciid" />
+          </Key>
+          <Property Name="ogrenciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogrenciad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ogrencisoyad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ogrencisinif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ogrencitel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblogretmen">
+          <Key>
+            <PropertyRef Name="ogretmenid" />
+          </Key>
+          <Property Name="ogretmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ogretmenad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="ogretmensoyad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="ogretmenders" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblsinif" Relationship="Self.FK_ogretmen_sinif" FromRole="tblogretmen" ToRole="tblsinif" />
+        </EntityType>
+        <EntityType Name="tblsinif">
+          <Key>
+            <PropertyRef Name="sinifad" />
+          </Key>
+          <Property Name="sinifid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sinifad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblogretmen" Relationship="Self.FK_ogretmen_sinif" FromRole="tblsinif" ToRole="tblogretmen" />
+        </EntityType>
+        <Association Name="FK_ogretmen_sinif">
+          <End Type="Self.tblsinif" Multiplicity="0..1" Role="tblsinif" />
+          <End Type="Self.tblogretmen" Multiplicity="*" Role="tblogretmen" />
+          <ReferentialConstraint>
+            <Principal Role="tblsinif">
+              <PropertyRef Name="sinifad" />
+            </Principal>
+            <Dependent Role="tblogretmen">
+              <PropertyRef Name="ogretmenders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="tblogrenci" EntityType="Self.tblogrenci" />
+          <EntitySet Name="tblogretmen" EntityType="Self.tblogretmen" />
+          <EntitySet Name="tblsinif" EntityType="Self.tblsinif" />
+          <AssociationSet Name="FK_ogretmen_sinif" Association="Self.FK_ogretmen_sinif">
+            <End EntitySet="tblsinif" Role="tblsinif" />
+            <End EntitySet="tblogretmen" Role="tblogretmen" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="testEntities1">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="testModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblogrenci">
+            <EntityTypeMapping TypeName="testModel.tblogrenci">
+              <MappingFragment StoreEntitySet="tblogrenci">
+                <ScalarProperty Name="ogrenciid" ColumnName="ogrenciid" />
+                <ScalarProperty Name="ogrenciad" ColumnName="ogrenciad" />
+                <ScalarProperty Name="ogrencisoyad" ColumnName="ogrencisoyad" />
+                <ScalarProperty Name="ogrencisinif" ColumnName="ogrencisinif" />
+                <ScalarProperty Name="ogrencitel" ColumnName="ogrencitel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblogretmen">
+            <EntityTypeMapping TypeName="testModel.tblogretmen">
+              <MappingFragment StoreEntitySet="tblogretmen">
+                <ScalarProperty Name="ogretmenid" ColumnName="ogretmenid" />
+                <ScalarProperty Name="ogretmenad" ColumnName="ogretmenad" />
+                <ScalarProperty Name="ogretmensoyad" ColumnName="ogretmensoyad" />
+                <ScalarProperty Name="ogretmenders" ColumnName="ogretmenders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblsinif">
+            <EntityTypeMapping TypeName="testModel.tblsinif">
+              <MappingFragment StoreEntitySet="tblsinif">
+                <ScalarProperty Name="sinifid" ColumnName="sinifid" />
+                <ScalarProperty Name="sinifad" ColumnName="sinifad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

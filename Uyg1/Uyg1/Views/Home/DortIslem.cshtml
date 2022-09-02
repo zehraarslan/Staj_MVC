@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        input {
+            margin-bottom: 5px;
+            text-align: right;
+        }
+
+        .Btn {
+            margin-top: 10px;
+           
+           
+        }
+
+        div {
+            text-align: center;
+  
+        }
+
+        p {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+        <input type="text" class="Edit" id="edit1" placeholder="0" />
+        <br />
+        <input type="text" class="Edit" id="edit2" placeholder="0" />
+        <p id="islem">?</p>
+        <hr />
+        <input type="text" class="Edit" id="sonuc" disabled="disabled" />
+        <br />
+
+        <div>
+
+            <button type="button" class="Btn" id="topla" onclick="funcislem('+')" value="Topla"><b>+</b></button>
+            <button type="button" class="Btn" id="cikart" onClick="funcislem('-')" value="Cikar"><b>-</b></button>
+            <button type="button" class="Btn" id="carpma" onClick="funcislem('*')" value="Carp"><b>*</b></button>
+            <button type="button" class="Btn" id="bolme" onClick="funcislem('/')" value="Bol"><b>/</b></button>
+
+
+
+        </div>
+    </div>
+
+    <script>
+        function funcislem(islem) {
+            var val1 = document.getElementById("edit1").value;
+            var val2 = document.getElementById("edit2").value;
+
+            if (islem == "+") {
+                sonuc.value = parseFloat(val1) + parseFloat(val2);
+                document.getElementById('islem').innerHTML = "+";
+            }
+            if (islem == "-") {
+                sonuc.value = parseFloat(val1) - parseFloat(val2);
+                document.getElementById('islem').innerHTML = "-";
+            }
+            if (islem == "*") {
+                sonuc.value = parseFloat(val1) * parseFloat(val2);
+                document.getElementById('islem').innerHTML = "*";
+            }
+            if (islem == "/") {
+                if (parseFloat(val2) != 0) {
+                    sonuc.value = parseFloat(val1) / parseFloat(val2);
+                } else {
+                    sonuc.value = "hatalı işlem";
+                }
+                document.getElementById('islem').innerHTML = "/";
+
+            }
+
+        }
+
+
+
+    </script>
+
+</body>
+</html>

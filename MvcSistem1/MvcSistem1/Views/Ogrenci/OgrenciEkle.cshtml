@@ -1,0 +1,31 @@
+﻿@model MvcSistem1.Models.Entity.tbOgrenci
+@{
+    ViewBag.Title = "OgrenciEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ ADI</label>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ SOYADI</label>
+        @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ NO</label>
+        @Html.TextBoxFor(m => m.No, new { @class = "form-control" })
+    </div>
+
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-ekle">YENİ ÖĞRENCİ EKLE</button>
+    </div>
+
+</form>
+

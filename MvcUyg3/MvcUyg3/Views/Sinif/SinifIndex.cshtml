@@ -1,0 +1,31 @@
+﻿@using MvcUyg3.Models.Entity;
+@model List<tblsinif>
+@{
+    ViewBag.Title = "SinifIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>BRANŞ ID</th>
+            <th>BRANŞ ADI</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var snf in Model)
+        {
+            <tr>
+                <th>@snf.sinifid</th>
+                <td>@snf.sinifad</td>
+                <td>@Html.ActionLink("SİL BUTONU", "SinifSil", new { id = snf.sinifad }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Sinif/SinifGetir/@snf.sinifid" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Ogretmen/OgretmenEkle" class="btn btn-primary">YENİ BRANŞ EKLE</a>
+

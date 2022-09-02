@@ -1,0 +1,41 @@
+﻿@model MvcSistem1.Models.Entity.tbOgretmen
+@{
+    ViewBag.Title = "OgretmenEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>ÖĞRETMEN ADI</label>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRETMEN SOYADI</label>
+        @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>TEL</label>
+        @Html.TextBoxFor(m => m.Tel, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>MAAŞ</label>
+        @Html.TextBoxFor(m => m.Maas, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>DERS</label>
+        @Html.DropDownListFor(m => m.tbSinif.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>DERS</label>
+        @Html.DropDownListFor(m => m.tbSinif1.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-ekle">YENİ ÖĞRETMEN EKLE</button>
+    </div>
+</form>
+

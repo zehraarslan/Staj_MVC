@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcSistem1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tbListe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KisiId" Type="int" />
+    <Property Name="SinifId1" Type="int" />
+    <Property Name="SinifId2" Type="int" />
+    <Property Name="SinifId3" Type="int" />
+    <Property Name="SinifId4" Type="int" />
+    <Property Name="SinifId5" Type="int" />
+  </EntityType>
+  <EntityType Name="tbOgrenci">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="No" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbOgretmen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="11" />
+    <Property Name="Maas" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Brans1" Type="int" />
+    <Property Name="Brans2" Type="int" />
+  </EntityType>
+  <EntityType Name="tbSinif">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tbListe_tbOgrenci1">
+    <End Role="tbOgrenci" Type="Self.tbOgrenci" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbOgrenci">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="KisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif1">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif2">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif3">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif4">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId4" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif5">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId5" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOgretmen_tbSinif">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbOgretmen" Type="Self.tbOgretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbOgretmen">
+        <PropertyRef Name="Brans1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOgretmen_tbSinif1">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbOgretmen" Type="Self.tbOgretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbOgretmen">
+        <PropertyRef Name="Brans2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcSistem1ModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbListe" EntityType="Self.tbListe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbOgrenci" EntityType="Self.tbOgrenci" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbOgretmen" EntityType="Self.tbOgretmen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbSinif" EntityType="Self.tbSinif" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbListe_tbOgrenci1" Association="Self.FK_tbListe_tbOgrenci1">
+      <End Role="tbOgrenci" EntitySet="tbOgrenci" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif1" Association="Self.FK_tbListe_tbSinif1">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif2" Association="Self.FK_tbListe_tbSinif2">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif3" Association="Self.FK_tbListe_tbSinif3">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif4" Association="Self.FK_tbListe_tbSinif4">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif5" Association="Self.FK_tbListe_tbSinif5">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOgretmen_tbSinif" Association="Self.FK_tbOgretmen_tbSinif">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbOgretmen" EntitySet="tbOgretmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOgretmen_tbSinif1" Association="Self.FK_tbOgretmen_tbSinif1">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbOgretmen" EntitySet="tbOgretmen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

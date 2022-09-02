@@ -1,0 +1,40 @@
+﻿@model MvcSistem1.Models.Entity.tbOgretmen
+@{
+    ViewBag.Title = "OgretmenGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("OgretmenGuncelle", "Ogretmen", FormMethod.Post))
+{
+<div class="form-group">
+    <label>ÖĞRETMEN İD</label>
+    @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+    <br />
+    <label>ÖĞRETMEN AD</label>
+    @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+    <br />
+    <label>ÖĞRETMEN SOYAD</label>
+    @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+    <br />
+    <label>TEL</label>
+    @Html.TextBoxFor(m => m.Tel, new { @class = "form-control" })
+    <br />
+    <label>MAAŞ</label>
+    @Html.TextBoxFor(m => m.Maas, new { @class = "form-control" })
+    <br />
+
+    <label>1. BRANŞIN ADI:</label>
+    @Html.DropDownListFor(m => m.tbSinif.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+
+    <label>2. BRANŞIN ADI:</label>
+    @Html.DropDownListFor(m => m.tbSinif1.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+</div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+
+
+

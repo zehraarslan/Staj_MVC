@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MvcSistem1ModelStoreContainer" CdmEntityContainer="MvcSistem1Entities2">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MvcSistem1Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbListe">
+      <EntityTypeMapping TypeName="MvcSistem1Model.tbListe">
+        <MappingFragment StoreEntitySet="tbListe">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+          <ScalarProperty Name="SinifId1" ColumnName="SinifId1" />
+          <ScalarProperty Name="SinifId2" ColumnName="SinifId2" />
+          <ScalarProperty Name="SinifId3" ColumnName="SinifId3" />
+          <ScalarProperty Name="SinifId4" ColumnName="SinifId4" />
+          <ScalarProperty Name="SinifId5" ColumnName="SinifId5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbOgrenci">
+      <EntityTypeMapping TypeName="MvcSistem1Model.tbOgrenci">
+        <MappingFragment StoreEntitySet="tbOgrenci">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="No" ColumnName="No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbOgretmen">
+      <EntityTypeMapping TypeName="MvcSistem1Model.tbOgretmen">
+        <MappingFragment StoreEntitySet="tbOgretmen">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Maas" ColumnName="Maas" />
+          <ScalarProperty Name="Brans1" ColumnName="Brans1" />
+          <ScalarProperty Name="Brans2" ColumnName="Brans2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbSinif">
+      <EntityTypeMapping TypeName="MvcSistem1Model.tbSinif">
+        <MappingFragment StoreEntitySet="tbSinif">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

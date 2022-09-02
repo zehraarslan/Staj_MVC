@@ -1,0 +1,27 @@
+﻿@model MvcUyg3.Models.Entity.tblogretmen
+@{
+    ViewBag.Title = "OgretmenEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>ÖĞRETMEN ADI</label>
+        @Html.TextBoxFor(m => m.ogretmenad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRETMEN SOYADI</label>
+        @Html.TextBoxFor(m => m.ogretmensoyad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>BRANŞI</label>
+        @Html.TextBoxFor(m => m.ogretmenders, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-ekle">YENİ ÖĞRETMEN EKLE</button>
+    </div>
+</form>
+

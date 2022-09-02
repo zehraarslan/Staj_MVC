@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+        }
+
+        ;
+    </style>
+</head>
+
+<body>
+    <div Id="Area">
+
+    </div>
+
+    <script>
+        var _Width = "50px";
+        var _Height = "50px";
+        var MyTime;
+
+        for (i = 1; i <= 1000; i++) {
+
+            var element = document.createElement("div");
+
+            element.setAttribute("id", i);
+            element.style.width = _Width;
+            element.style.height = _Height;
+            element.style.backgroundColor = random_rgba();
+
+            element.style.float = 'left';
+            element.style.margin = '5px';
+            element.style.borderRadius = '5px';
+
+            document.getElementById('Area').appendChild(element);
+
+        };
+        MyTime = setInterval(fnChangeColor, 1000);
+
+        function random_rgba() {
+            var o = Math.round,
+                r = Math.random,
+                s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + 1 + ')';
+        }
+
+
+
+        function fnChangeColor() {
+            //console.log(random_rgba());
+
+            for (i = 1; i <= 1000; i++){
+            document.getElementById(i).style.backgroundColor = random_rgba();
+            }
+
+
+
+
+        };
+
+    </script>
+
+</body>
+
+</html>

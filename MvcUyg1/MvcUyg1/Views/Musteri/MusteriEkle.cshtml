@@ -1,0 +1,30 @@
+﻿@model MvcUyg1.Models.Entity.TBLMUSTERILER
+@{
+    ViewBag.Title = "MusteriEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>MÜŞTERİ ADI</label>
+        @*<input type="text" class="form-control" name="MUSTERIAD" />*@
+        @Html.TextBoxFor(m => m.MUSTERIAD, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MUSTERIAD, "", new { @style = "color:blue" })
+    </div>
+    <div style="margin-top:15px">
+        <label>MÜŞTERİ SOYADI</label>
+        @*<input type="text" class="form-control" name="MUSTERISOYAD" />*@
+        @Html.TextBoxFor(m => m.MUSTERISOYAD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-mstrekle">YENİ MÜŞTERİ EKLE</button>
+    </div>
+    <script>
+        $('#btn-mstrekle').click(function () {
+            alert("Müşteri Ekleme İşlemi Yapıldı...");
+        });
+    </script>
+</form>
+
+
+

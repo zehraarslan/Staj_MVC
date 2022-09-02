@@ -1,0 +1,36 @@
+﻿@using MvcUyg1.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+
+@*@model List<TBLKATEGORILER>*@
+@model PagedList.IPagedList<TBLKATEGORILER>
+@{
+    ViewBag.Title = "KategoriIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <th>@ktgr.KATEGORIID</th>
+                <td>@ktgr.KATEGORIAD</td>
+                <td><a href="/Kategori/KategoriSil/@ktgr.KATEGORIID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Kategori/KategoriGetir/@ktgr.KATEGORIID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("KategoriIndex" , new { sayfa}))
+
+<a href="/Kategori/KategoriEkle" class="btn btn-primary">YENİ KATEGORİ EKLE</a>

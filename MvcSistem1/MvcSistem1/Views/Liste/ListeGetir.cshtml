@@ -1,0 +1,48 @@
+﻿@model MvcSistem1.Models.Entity.tbListe
+@{
+    ViewBag.Title = "ListeGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("ListeGuncelle", "Liste", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.id)
+    @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+    <br />
+    <label>ÖĞRENCİ ADI:</label>
+    @Html.TextBoxFor(m => m.tbOgrenci.Ad, new { @class = "form-control" })
+    <br />
+
+    <label>1. DERSİN ADI:</label>
+
+    @Html.DropDownListFor(m => m.tbSinif.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" }) 
+    @*(Seçilen değer, listedeki değerler, class'')*@
+    <br />
+
+    <label>2. DERSİN ADI:</label>
+    @Html.DropDownListFor(m => m.tbSinif1.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+
+    <label>3. DERSİN ADI:</label>
+
+    @Html.DropDownListFor(m => m.tbSinif2.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+
+    <label>4. DERSİN ADI:</label>
+
+    @Html.DropDownListFor(m => m.tbSinif3.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+
+    <label>5. DERSİN ADI:</label>
+
+    @Html.DropDownListFor(m => m.tbSinif4.id, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-control" })
+    <br />
+
+
+</div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+

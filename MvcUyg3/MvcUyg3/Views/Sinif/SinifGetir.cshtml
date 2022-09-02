@@ -1,0 +1,21 @@
+﻿@model MvcUyg3.Models.Entity.tblsinif
+@{
+    ViewBag.Title = "SinifGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SinifGuncelle", "Sinif", FormMethod.Post))
+{
+    <div class="form-group">
+        
+        <label>BRANŞ AD</label>
+        @Html.TextBoxFor(m => m.sinifad, new { @class = "form-control" })
+        <br />
+     
+
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+

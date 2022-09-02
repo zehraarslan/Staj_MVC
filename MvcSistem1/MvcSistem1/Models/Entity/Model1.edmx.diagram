@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="42e00d5a23a4416bb158b2af45dbd9f5" Name="Diagram1">
+        <EntityTypeShape EntityType="MvcSistem1Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcSistem1Model.tbListe" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcSistem1Model.tbOgrenci" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcSistem1Model.tbOgretmen" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcSistem1Model.tbSinif" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbOgrenci1" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbSinif1" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbSinif2" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbSinif3" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbSinif4" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbListe_tbSinif5" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbOgretmen_tbSinif" ManuallyRouted="false" />
+        <AssociationConnector Association="MvcSistem1Model.FK_tbOgretmen_tbSinif1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

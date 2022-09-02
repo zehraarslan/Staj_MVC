@@ -1,0 +1,34 @@
+﻿@model MvcUyg3.Models.Entity.tblogrenci
+@{
+    ViewBag.Title = "OgrenciGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("OgrenciGuncelle", "Ogrenci", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ÖĞRENCİ İD</label>
+        @Html.TextBoxFor(m => m.ogrenciid, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ AD</label>
+        @Html.TextBoxFor(m => m.ogrenciad, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ SOYAD</label>
+        @Html.TextBoxFor(m => m.ogrencisoyad, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ SINIFI</label>
+        @Html.TextBoxFor(m => m.ogrencisinif, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ TEL</label>
+        @Html.TextBoxFor(m => m.ogrencitel, new { @class = "form-control" })
+        <br />
+
+
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+
+

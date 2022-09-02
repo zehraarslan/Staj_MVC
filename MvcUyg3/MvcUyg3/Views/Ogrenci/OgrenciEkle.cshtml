@@ -1,0 +1,36 @@
+﻿@model MvcUyg3.Models.Entity.tblogrenci
+@{
+    ViewBag.Title = "OgrenciEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form class="form-group" method="post">
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ ADI</label>
+       @Html.TextBoxFor(m => m.ogrenciad, new { @class="form-control"})
+
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ SOYADI</label>
+        @Html.TextBoxFor(m => m.ogrencisoyad, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ SINIFI</label>
+        @Html.TextBoxFor(m => m.ogrencisinif, new { @class = "form-control" })
+    </div>
+
+    <div style="margin-top:15px">
+        <label>ÖĞRENCİ TEL</label>
+        @*@Html.TextBoxFor(m => m.ogrencitel, new { @class = "form-control" })*@
+        <input type="number" class="form-control" name="ogrencitel" required="" />
+     
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-ekle">YENİ ÖĞRENCİ EKLE</button>
+    </div>
+
+</form>

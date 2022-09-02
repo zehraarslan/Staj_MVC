@@ -1,0 +1,46 @@
+﻿@using MvcUyg3.Models.Entity;
+@model List<tblogrenci>
+@{
+    ViewBag.Title = "OgrenciIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("OgrenciIndex", "Ogrenci", FormMethod.Get))
+{
+    <p>
+            <b>Aranacak Kategori:</b> @Html.TextBox("p");
+            <input type="submit" value="Ara" />
+        </p>
+    
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ÖĞRENCİ ID</th>
+        <th>ÖĞRENCİ ADI</th>
+        <th>ÖĞRENCİ SOYADI</th>
+        <th>SINIFI</th>
+        <th>TEL</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+
+
+    </tr>
+    <tbody>
+        @foreach (var ogrnc in Model)
+        {
+            <tr>
+                <th>@ogrnc.ogrenciid</th>
+                <td>@ogrnc.ogrenciad</td>
+                <td>@ogrnc.ogrencisoyad</td>
+                <td>@ogrnc.ogrencisinif</td>
+                <td>@ogrnc.ogrencitel</td>
+                <td>@Html.ActionLink("SİL BUTONU", "OgrenciSil", new { id = ogrnc.ogrenciid }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+                <td><a href="/Ogrenci/OgrenciGetir/@ogrnc.ogrenciid" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+
+
+        }
+    </tbody>
+</table>
+<a href="/Ogrenci/OgrenciEkle" class="btn btn-primary">YENİ ÖĞRENCİ EKLE</a>
+

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> HESAP MAKİNESİ</title>
+    <style>
+        input {
+            width: 290px;
+            height: 25px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        button {
+            height: 70px;
+            width: 70px;
+            margin-bottom: 10px;
+            text-align: center;
+            transition-duration: 0.2s;
+            border-radius: 10px;
+        }
+
+            button:hover {
+                background-color: cadetblue;
+            }
+
+        #calculator {
+            border: 2px solid black;
+            width: 300px;
+            text-align: center;
+            background-color: beige;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+    <div id="calculator" class="tus">
+        <input id="sonuc" class="screen" type="text" />
+        <div>
+
+
+            <button value="7" type="button" onclick="rakamlar(7)"><b>7</b></button>
+            <button value="8" type="button" onclick="rakamlar(8)"><b>8</b></button>
+            <button value="9" type="button" onclick="rakamlar(9)"><b>9</b></button>
+            <button value="/" type="button" onclick="islem('/')"><b>/</b></button>
+
+            <button value="4" type="button" onclick="rakamlar(4)"><b>4</b></button>
+            <button value="5" type="button" onclick="rakamlar(5)"><b>5</b></button>
+            <button value="6" type="button" onclick="rakamlar(6)"><b>6</b></button>
+            <button value="*" type="button" onclick="islem('*')"><b>*</b></button>
+
+            <button value="1" type="button" onclick="rakamlar(1)"><b>1</b></button>
+            <button value="2" type="button" onclick="rakamlar(2)"><b>2</b></button>
+            <button value="3" type="button" onclick="rakamlar(3)"><b>3</b></button>
+            <button value="-" type="button" onclick="islem('-')"><b>-</b></button>
+
+            <button value="0" type="button" onclick="rakamlar(0)"><b>0</b></button>
+            <button value="." type="button" onclick="nokta()"><b>.</b></button>
+            <button value="=" type="button" onclick="islem('=')"><b>=</b></button>
+            <button value="+" type="button" onclick="islem('+')"><b>+</b></button>
+
+            <button value="C" type="button" onclick="silme('c')"><b>C</b></button>
+            <button value="x" type="button" onclick="silme('x')"><b>x</b></button>
+
+        </div>
+    </div>
+    <script>
+        var rakamekle = false;
+        function rakamlar(rakam) {
+            if (rakamekle == true) {
+                document.getElementById('sonuc').value += rakam;
+            } else {
+                document.getElementById('sonuc').value = rakam;
+                rakamekle = true;
+            }
+        }
+
+        function islem(islemtürü) {
+            var result = eval(document.getElementById('sonuc').value);
+            if (islemtürü == '+') {
+                document.getElementById('sonuc').value += '+';
+                console.log(result);
+            }
+            if (islemtürü == '-') {
+                document.getElementById('sonuc').value += '-';
+                console.log(result);
+            }
+            if (islemtürü == '*') {
+                document.getElementById('sonuc').value += '*';
+                console.log(result);
+            }
+            if (islemtürü == '/') {
+                document.getElementById('sonuc').value += '/';
+                console.log(result);
+            }
+            if (islemtürü == '=') {
+                document.getElementById('sonuc').value = result;
+               // rakamekle = false;
+            }
+        }
+
+        function silme(isaret){
+             if (isaret == 'c') {
+                resul=0;
+                document.getElementById('sonuc').value ="";
+                rakamekle = false;
+            }
+            if (isaret == 'x') {
+                var sil=document.getElementById('sonuc').value;
+                result=sil.substring(0,sil.length-1);
+                document.getElementById('sonuc').value =result;
+            }
+        }
+
+        function nokta() {
+        if (rakamekle == true) {
+        document.getElementById('sonuc').value += '.';
+        } else {
+        document.getElementById('sonuc').value = '.';
+        rakamekle = true;
+        }
+        }
+    </script>
+</body>
+</html>

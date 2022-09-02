@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblogretmen">
+    <Key>
+      <PropertyRef Name="ogretmenid" />
+    </Key>
+    <Property Name="ogretmenid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ogretmenad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ogretmensoyad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ogretmenders" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblsinif" Relationship="Self.FK_ogretmen_sinif" FromRole="tblogretmen" ToRole="tblsinif" />
+  </EntityType>
+  <EntityType Name="tblsinif">
+    <Key>
+      <PropertyRef Name="sinifad" />
+    </Key>
+    <Property Name="sinifid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sinifad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblogretmen" Relationship="Self.FK_ogretmen_sinif" FromRole="tblsinif" ToRole="tblogretmen" />
+  </EntityType>
+  <EntityType Name="tblogrenci">
+    <Key>
+      <PropertyRef Name="ogrenciid" />
+      <PropertyRef Name="ogrenciad" />
+      <PropertyRef Name="ogrencisoyad" />
+    </Key>
+    <Property Name="ogrenciid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ogrenciad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ogrencisoyad" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ogrencitel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="ogrencisinif" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dogumtarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_ogretmen_sinif">
+    <End Role="tblsinif" Type="Self.tblsinif" Multiplicity="0..1" />
+    <End Role="tblogretmen" Type="Self.tblogretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblsinif">
+        <PropertyRef Name="sinifad" />
+      </Principal>
+      <Dependent Role="tblogretmen">
+        <PropertyRef Name="ogretmenders" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tblogretmen" EntityType="Self.tblogretmen" />
+    <EntitySet Name="tblsinif" EntityType="Self.tblsinif" />
+    <EntitySet Name="tblogrenci" EntityType="Self.tblogrenci" />
+    <AssociationSet Name="FK_ogretmen_sinif" Association="Self.FK_ogretmen_sinif">
+      <End Role="tblsinif" EntitySet="tblsinif" />
+      <End Role="tblogretmen" EntitySet="tblogretmen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

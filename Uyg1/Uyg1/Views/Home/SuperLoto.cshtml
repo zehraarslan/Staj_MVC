@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <p Id="Toplar"></p>
+    <p Id="Kolon"></p>
+    <script>
+        var Toplar = [];
+        for (i = 1; i <= 49; i++) {
+            Toplar[i-1] = i;
+          document.getElementById('Toplar').innerHTML += (i + ' - ');
+        }
+
+        var _Kolon = [];
+        var z = -1;
+
+        do {
+            var _Value = randomIntFromInterval(1, 49);
+            var ids = _Kolon.indexOf(_Value);
+
+            if (ids == -1) {
+                z++;
+                _Kolon[z] = _Value;
+            }
+        }
+        while (_Kolon.length <= 5)
+
+
+        _Kolon.sort(sortNumber);
+        for (i = 0; i <= 5; i++) {
+            document.getElementById('Kolon').innerHTML += _Kolon[i] + ' | ';
+        }
+
+        function sortNumber(a, b) {
+            return a - b;
+        }
+
+        function randomIntFromInterval(min, max) // min and max included
+        {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+    </script>
+</body>
+
+</html>

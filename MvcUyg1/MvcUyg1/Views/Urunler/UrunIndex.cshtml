@@ -1,0 +1,38 @@
+﻿@using MvcUyg1.Models.Entity
+@model List<TBLURUNLER>
+@{
+    ViewBag.Title = "UrunIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ÜRÜN ID</th>
+        <th>ÜRÜN ADI</th>
+        <th>MARKA</th>
+        <th>ÜRÜN KATEGORİ</th>
+        <th>FİYAT</th>
+        <th>STOK</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+
+<tbody>
+        @foreach (var urun in Model)
+        {
+    <tr>
+        <th>@urun.URUNID</th>
+        <td>@urun.URUNAD</td>
+        <td>@urun.MARKA</td>
+        <td>@urun.TBLKATEGORILER.KATEGORIAD</td>
+        <td>@urun.FIYAT</td>
+        <td>@urun.STOK</td>
+        <td><a href="/Urunler/UrunSil/@urun.URUNID" class="btn btn-danger">SİL</a></td>
+        <td><a href="/Urunler/UrunGetir/@urun.URUNID" class="btn btn-success">GÜNCELLE</a></td>
+    </tr>
+        }
+    </tbody>
+</table>
+<a href="/Urunler/UrunEkle" class="btn btn-primary">YENİ ÜRÜN EKLE</a>

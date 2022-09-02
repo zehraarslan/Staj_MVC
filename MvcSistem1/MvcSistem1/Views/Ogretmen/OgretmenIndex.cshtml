@@ -1,0 +1,43 @@
+﻿@using MvcSistem1.Models.Entity;
+@model List<tbOgretmen>
+@{
+    ViewBag.Title = "OgretmenIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ÖĞRETMEN</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>ADI</th>
+            <th>SOYADI</th>
+            <th>TEL</th>
+            <th>MAAŞ</th>
+            <th>BRANŞ-1</th>
+            <th>BRANŞ 2</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ogrt in Model)
+        {
+        <tr>
+            <th>@ogrt.id</th>
+            <td>@ogrt.Ad</td>
+            <td>@ogrt.Soyad</td>
+            <td>@ogrt.Tel</td>
+            <td>@ogrt.Maas</td>
+            <td>@ogrt.tbSinif.Ad</td>
+            <td>@ogrt.tbSinif1.Ad</td>
+
+            <td>@Html.ActionLink("SİL", "OgretmenSil", new { id = ogrt.id }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+            <td><a href="/Ogretmen/OgretmenGetir/@ogrt.id" class="btn btn-success">GÜNCELLE</a></td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Ogretmen/OgretmenEkle" class="btn btn-primary">YENİ ÖĞRETMEN EKLE</a>

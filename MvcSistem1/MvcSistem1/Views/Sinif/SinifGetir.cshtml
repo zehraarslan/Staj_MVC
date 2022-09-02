@@ -1,0 +1,27 @@
+﻿@model MvcSistem1.Models.Entity.tbSinif
+@{
+    ViewBag.Title = "SinifGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("SinifGuncelle", "Sinif", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>SINIF İD</label>
+      
+        @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+
+        <br />
+        <label>SINIF AD</label>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+        <br />
+    
+
+
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MvcSistem1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbListe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KisiId" Type="Int32" />
+    <Property Name="SinifId1" Type="Int32" />
+    <Property Name="SinifId2" Type="Int32" />
+    <Property Name="SinifId3" Type="Int32" />
+    <Property Name="SinifId4" Type="Int32" />
+    <Property Name="SinifId5" Type="Int32" />
+    <NavigationProperty Name="tbOgrenci" Relationship="Self.FK_tbListe_tbOgrenci1" FromRole="tbListe" ToRole="tbOgrenci" />
+    <NavigationProperty Name="tbSinif" Relationship="Self.FK_tbListe_tbSinif1" FromRole="tbListe" ToRole="tbSinif" />
+    <NavigationProperty Name="tbSinif1" Relationship="Self.FK_tbListe_tbSinif2" FromRole="tbListe" ToRole="tbSinif" />
+    <NavigationProperty Name="tbSinif2" Relationship="Self.FK_tbListe_tbSinif3" FromRole="tbListe" ToRole="tbSinif" />
+    <NavigationProperty Name="tbSinif3" Relationship="Self.FK_tbListe_tbSinif4" FromRole="tbListe" ToRole="tbSinif" />
+    <NavigationProperty Name="tbSinif4" Relationship="Self.FK_tbListe_tbSinif5" FromRole="tbListe" ToRole="tbSinif" />
+  </EntityType>
+  <EntityType Name="tbOgrenci">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="No" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbListe" Relationship="Self.FK_tbListe_tbOgrenci1" FromRole="tbOgrenci" ToRole="tbListe" />
+  </EntityType>
+  <EntityType Name="tbOgretmen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Maas" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Brans1" Type="Int32" />
+    <Property Name="Brans2" Type="Int32" />
+    <NavigationProperty Name="tbSinif" Relationship="Self.FK_tbOgretmen_tbSinif" FromRole="tbOgretmen" ToRole="tbSinif" />
+    <NavigationProperty Name="tbSinif1" Relationship="Self.FK_tbOgretmen_tbSinif1" FromRole="tbOgretmen" ToRole="tbSinif" />
+  </EntityType>
+  <EntityType Name="tbSinif">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbListe" Relationship="Self.FK_tbListe_tbSinif1" FromRole="tbSinif" ToRole="tbListe" />
+    <NavigationProperty Name="tbListe1" Relationship="Self.FK_tbListe_tbSinif2" FromRole="tbSinif" ToRole="tbListe" />
+    <NavigationProperty Name="tbListe2" Relationship="Self.FK_tbListe_tbSinif3" FromRole="tbSinif" ToRole="tbListe" />
+    <NavigationProperty Name="tbListe3" Relationship="Self.FK_tbListe_tbSinif4" FromRole="tbSinif" ToRole="tbListe" />
+    <NavigationProperty Name="tbListe4" Relationship="Self.FK_tbListe_tbSinif5" FromRole="tbSinif" ToRole="tbListe" />
+    <NavigationProperty Name="tbOgretmen" Relationship="Self.FK_tbOgretmen_tbSinif" FromRole="tbSinif" ToRole="tbOgretmen" />
+    <NavigationProperty Name="tbOgretmen1" Relationship="Self.FK_tbOgretmen_tbSinif1" FromRole="tbSinif" ToRole="tbOgretmen" />
+  </EntityType>
+  <Association Name="FK_tbListe_tbOgrenci1">
+    <End Role="tbOgrenci" Type="Self.tbOgrenci" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbOgrenci">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="KisiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif1">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif2">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif3">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif4">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId4" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbListe_tbSinif5">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbListe" Type="Self.tbListe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbListe">
+        <PropertyRef Name="SinifId5" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOgretmen_tbSinif">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbOgretmen" Type="Self.tbOgretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbOgretmen">
+        <PropertyRef Name="Brans1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbOgretmen_tbSinif1">
+    <End Role="tbSinif" Type="Self.tbSinif" Multiplicity="0..1" />
+    <End Role="tbOgretmen" Type="Self.tbOgretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbSinif">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbOgretmen">
+        <PropertyRef Name="Brans2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MvcSistem1Entities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tbListe" EntityType="Self.tbListe" />
+    <EntitySet Name="tbOgrenci" EntityType="Self.tbOgrenci" />
+    <EntitySet Name="tbOgretmen" EntityType="Self.tbOgretmen" />
+    <EntitySet Name="tbSinif" EntityType="Self.tbSinif" />
+    <AssociationSet Name="FK_tbListe_tbOgrenci1" Association="Self.FK_tbListe_tbOgrenci1">
+      <End Role="tbOgrenci" EntitySet="tbOgrenci" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif1" Association="Self.FK_tbListe_tbSinif1">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif2" Association="Self.FK_tbListe_tbSinif2">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif3" Association="Self.FK_tbListe_tbSinif3">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif4" Association="Self.FK_tbListe_tbSinif4">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbListe_tbSinif5" Association="Self.FK_tbListe_tbSinif5">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbListe" EntitySet="tbListe" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOgretmen_tbSinif" Association="Self.FK_tbOgretmen_tbSinif">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbOgretmen" EntitySet="tbOgretmen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbOgretmen_tbSinif1" Association="Self.FK_tbOgretmen_tbSinif1">
+      <End Role="tbSinif" EntitySet="tbSinif" />
+      <End Role="tbOgretmen" EntitySet="tbOgretmen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

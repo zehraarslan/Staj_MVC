@@ -1,0 +1,21 @@
+﻿@model MvcSistem1.Models.Entity.tbSinif
+@{
+    ViewBag.Title = "SinifEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form class="form-group" method="post">
+
+    <div style="margin-top:15px">
+        <label>DERSİN ADI</label>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+
+    </div>
+
+
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="btn-ekle">YENİ ÖĞRENCİ EKLE</button>
+    </div>
+
+</form>
+

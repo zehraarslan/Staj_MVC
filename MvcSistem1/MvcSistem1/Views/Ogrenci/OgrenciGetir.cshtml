@@ -1,0 +1,31 @@
+﻿@model MvcSistem1.Models.Entity.tbOgrenci
+@{
+    ViewBag.Title = "OgrenciGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("OgrenciGuncelle", "Ogrenci", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ÖĞRENCİ İD</label>
+        @Html.TextBoxFor(m => m.id, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ AD</label>
+        @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ SOYAD</label>
+        @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRENCİ SINIFI</label>
+        @Html.TextBoxFor(m => m.No, new { @class = "form-control" })
+        <br />
+       
+
+
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+
+

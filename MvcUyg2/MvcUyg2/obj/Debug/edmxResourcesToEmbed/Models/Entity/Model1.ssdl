@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'test.dbo.tblogrenci' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblogrenci">
+    <Key>
+      <PropertyRef Name="ogrenciid" />
+      <PropertyRef Name="ogrenciad" />
+      <PropertyRef Name="ogrencisoyad" />
+    </Key>
+    <Property Name="ogrenciid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ogrenciad" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ogrencisoyad" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="ogrencitel" Type="nvarchar" MaxLength="11" />
+    <Property Name="ogrencisinif" Type="nvarchar" MaxLength="50" />
+    <Property Name="dogumtarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblogretmen">
+    <Key>
+      <PropertyRef Name="ogretmenid" />
+    </Key>
+    <Property Name="ogretmenid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ogretmenad" Type="nvarchar" MaxLength="30" />
+    <Property Name="ogretmensoyad" Type="nvarchar" MaxLength="40" />
+    <Property Name="ogretmenders" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblsinif">
+    <Key>
+      <PropertyRef Name="sinifad" />
+    </Key>
+    <Property Name="sinifid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sinifad" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ogretmen_sinif">
+    <End Role="tblsinif" Type="Self.tblsinif" Multiplicity="0..1" />
+    <End Role="tblogretmen" Type="Self.tblogretmen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblsinif">
+        <PropertyRef Name="sinifad" />
+      </Principal>
+      <Dependent Role="tblogretmen">
+        <PropertyRef Name="ogretmenders" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="testModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblogretmen" EntityType="Self.tblogretmen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblsinif" EntityType="Self.tblsinif" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblogrenci" EntityType="Self.tblogrenci" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblogrenci].[ogrenciid] AS [ogrenciid], 
+    [tblogrenci].[ogrenciad] AS [ogrenciad], 
+    [tblogrenci].[ogrencisoyad] AS [ogrencisoyad], 
+    [tblogrenci].[ogrencitel] AS [ogrencitel], 
+    [tblogrenci].[ogrencisinif] AS [ogrencisinif], 
+    [tblogrenci].[dogumtarihi] AS [dogumtarihi]
+    FROM [dbo].[tblogrenci] AS [tblogrenci]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ogretmen_sinif" Association="Self.FK_ogretmen_sinif">
+      <End Role="tblsinif" EntitySet="tblsinif" />
+      <End Role="tblogretmen" EntitySet="tblogretmen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

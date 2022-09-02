@@ -1,0 +1,45 @@
+﻿@using MvcSistem1.Models.Entity;
+@model List<tbListe>
+@{
+    ViewBag.Title = "ListeIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>ÖĞRENCİ NO</th>
+        <th>ÖĞRENCİ ADI</th>
+        <th>ÖĞRENCİ SOYADI</th>
+        <th>DERS</th>
+        <th>DERS</th>
+        <th>DERS</th>
+        <th>DERS</th>
+        <th>DERS</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+
+<tbody>
+        @foreach (var lst in Model)
+        {
+    <tr>
+        <th>@lst.id</th>
+        <td>@lst.tbOgrenci.No</td>
+        <td>@lst.tbOgrenci.Ad</td>
+        <td>@lst.tbOgrenci.Soyad</td>
+        <td>@lst.tbSinif.Ad</td>
+        <td>@lst.tbSinif1.Ad</td>
+        <td>@lst.tbSinif2.Ad</td>
+        <td>@lst.tbSinif3.Ad</td>
+        <td>@lst.tbSinif4.Ad</td>
+
+
+        <td>@Html.ActionLink("SİL", "ListeSil", new { id = lst.id }, new { @class = "btn btn-danger", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+        <td><a href="/Liste/ListeGetir/@lst.id" class="btn btn-success">GÜNCELLE</a></td>
+          @*Silme ve güncelleme işlemlerinde tablodan verileri id sayesinde buluruz.*@
+    </tr>
+        }
+    </tbody>
+</table>
+<a href="/Liste/ListeEkle" class="btn btn-primary"> EKLE</a>
+

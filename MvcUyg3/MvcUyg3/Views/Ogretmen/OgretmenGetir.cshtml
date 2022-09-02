@@ -1,0 +1,30 @@
+﻿@model MvcUyg3.Models.Entity.tblogretmen
+
+@{
+    ViewBag.Title = "OgretmenGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("OgretmenGuncelle", "Ogretmen", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>ÖĞRETMEN İD</label>
+        @Html.TextBoxFor(m => m.ogretmenid, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRETMEN AD</label>
+        @Html.TextBoxFor(m => m.ogretmenad, new { @class = "form-control" })
+        <br />
+        <label>ÖĞRETMEN SOYAD</label>
+        @Html.TextBoxFor(m => m.ogretmensoyad, new { @class = "form-control" })
+        <br />
+        <label>BRANŞI</label>
+        @Html.TextBoxFor(m => m.ogretmenders, new { @class = "form-control" })
+        <br />
+
+    </div>
+    <div>
+        <button class="btn btn-warning">GÜNCELLE</button>
+    </div>
+}
+

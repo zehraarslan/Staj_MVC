@@ -1,0 +1,58 @@
+﻿
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #kutu {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="kutu">
+        Polis Siren
+    </div>
+    <button name="Start/Stop" onclick="StartEngine()">Başlat</button>
+
+    <script>
+        var kutu = document.getElementById('kutu');
+        var IsStart = false;
+        var MyVar = null;
+
+        function StartEngine() {
+
+            if (IsStart==false) {
+                IsStart=true;
+                console.log("started.");
+                MyVar = setInterval(myTimer,1000);
+            } else {
+                IsStart=false;
+                console.log("stoped.");
+
+                clearInterval(MyVar);
+
+            }
+        }
+
+
+
+        function myTimer() {
+            if (kutu.style.background == 'blue') {
+                kutu.style.background = 'red';
+            } else {
+                kutu.style.background = 'blue';
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
